@@ -175,6 +175,10 @@ body{
 }
 .informacion__episodios{
   max-width: 500px;
+  line-height: 2;
+}
+.informacion__link{
+  color: rgb(0, 0, 238);
 }
 
 @media (width  < 768px){

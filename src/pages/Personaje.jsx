@@ -48,7 +48,7 @@ function Personaje(){
                 <ul>
                     {
                         personaje.episode.map(episodio => (
-                            <li key={episodio.id}><Link to={`/episodios/${episodio.id}`}>{episodio.episode}</Link> - {episodio.name}</li>
+                            <li key={episodio.id}><Link class="informacion__link" to={`/episodios/${episodio.id}`}>{episodio.episode}</Link> - {episodio.name}</li>
                         ))
                     }
                 </ul>
