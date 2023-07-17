@@ -3,6 +3,7 @@ import Paginacion from "../components/Paginacion";
 import useFetch from "../hooks/useFetch";
 import Filtro from "../components/Filtro";
 import { useEffect, useState } from "react";
+import CardPersonaje from "../components/CardPersonaje";
 
 function Personajes(){
     const [filtros, setFiltros] = useState(null);
@@ -52,17 +53,8 @@ function Personajes(){
                         <h2 className="titulo contenedor">{error}</h2>
                     ) : (
                         personajes ? (
-                            personajes.map(({id, name, status, species, type, gender, origin: {name:originName}, location: {name:locationName}, image}) => (
-                                <div className="card personaje" key={id}>
-                                    <img className="card__img" src={image} alt={`Imagen de ${name}`} />
-                                    <h2 className="card__titulo">{name}</h2>
-                                    <p><b>Estado:</b> {status}</p>
-                                    <p><b>Especie:</b> {species}</p>
-                                    { type && (<p><b>Tipo:</b> {type}</p>) }
-                                    <p><b>Genero:</b> {gender}</p>
-                                    <p><b>Origen:</b> {originName}</p>
-                                    <p><b>Ubicacion:</b> {locationName}</p>
-                                </div>
+                            personajes.map((personaje) => (
+                                <CardPersonaje personaje={personaje} key={personaje.id} />
                             ))
                         ) : (
                             <h2 className="titulo contenedor">Cargando...</h2>

@@ -2,6 +2,7 @@ import { API_URLS } from "../consts";
 
 import Paginacion from "../components/Paginacion";
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 function Ubicaciones(){
     const {
@@ -31,10 +32,15 @@ function Ubicaciones(){
                 {
                     ubicaciones ? (
                         ubicaciones.map(({id, name, type, dimension}) => (
-                            <div className="card ubicacion" key={id}>
+                            <div className="card" key={id}>
                                 <h2 className="card__titulo">{name}</h2>
-                                <p><b>Tipo:</b> {type}</p>
-                                <p><b>Dimension:</b> {dimension}</p>
+
+                                <div className="card__informacion">
+                                    <p><b>Tipo:</b> {type}</p>
+                                    <p><b>Dimension:</b> {dimension}</p>
+                                </div>
+
+                                <Link className="card__mas boton" to={`/ubicaciones/${id}`}>Ver más</Link>
                             </div>
                         ))
                     ) : (

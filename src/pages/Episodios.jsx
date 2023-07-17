@@ -1,6 +1,7 @@
 import { API_URLS } from "../consts";
 import Paginacion from "../components/Paginacion";
 import useFetch from "../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 function Episodios(){
     const {
@@ -30,10 +31,15 @@ function Episodios(){
                 {
                     episodios ? (
                         episodios.map(({id, name, air_date, episode}) => (
-                            <div className="card episodio" key={id}>
+                            <div className="card" key={id}>
                                 <h2 className="card__titulo">{name}</h2>
-                                <p><b>Estreno:</b> {air_date}</p>
-                                <p><b>Episodio:</b> {episode}</p>
+
+                                <div className="card__informacion">
+                                    <p><b>Estreno:</b> {air_date}</p>
+                                    <p><b>Episodio:</b> {episode}</p>
+                                </div>
+
+                                <Link className="card__mas boton" to={`/episodios/${id}`}>Ver más</Link>
                             </div>
                         ))
                     ) : (
