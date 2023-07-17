@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import CardPersonaje from "../components/CardPersonaje";
 
 function Personajes(){
-    const [filtros, setFiltros] = useState(null);
+    const [filtros, setFiltros] = useState({
+        nombre: "",
+        estado: "",
+        genero: ""
+    });
 
     const {
         elementos:personajes,
@@ -19,8 +23,6 @@ function Personajes(){
     } = useFetch(API_URLS.characters);
 
     useEffect(() => {
-        if(!filtros) return;
-
         let nombre = filtros.nombre || "";
         let estado = filtros.estado || "";
         let genero = filtros.genero || "";
@@ -44,7 +46,7 @@ function Personajes(){
                     filtros={filtros}
                 />
                 {/* Al cambiar el filtro se actualiza la lista */}
-                <Filtro setFiltros={setFiltros} />
+                <Filtro filtros={filtros} setFiltros={setFiltros} />
             </div>
 
             <div className="cards">
