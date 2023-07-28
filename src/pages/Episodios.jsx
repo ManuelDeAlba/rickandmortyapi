@@ -10,6 +10,8 @@ function Episodios(){
         pagina,
         paginas,
         urls,
+        cargando,
+        error,
         obtenerElementos:obtenerEpisodios
     } = useFetch(API_URLS.episodes);
 
@@ -29,12 +31,18 @@ function Episodios(){
 
             <div className="cards">
                 {
-                    episodios ? (
-                        episodios.map(episodio => (
-                            <CardEpisodio episodio={episodio} key={episodio.id} />
-                        ))
-                    ) : (
+                    cargando ? (
                         <h2 className="titulo contenedor">Cargando...</h2>
+                    ) : (
+                        error ? (
+                            <h2 className="titulo contenedor">{error}</h2>
+                        ) : (
+                            episodios && (
+                                episodios.map(episodio => (
+                                    <CardEpisodio episodio={episodio} key={episodio.id} />
+                                ))
+                            )
+                        )
                     )
                 }
             </div>

@@ -18,6 +18,7 @@ function Personajes(){
         pagina,
         paginas,
         urls,
+        cargando,
         error,
         obtenerElementos:obtenerPersonajes
     } = useFetch(API_URLS.characters);
@@ -51,15 +52,17 @@ function Personajes(){
 
             <div className="cards">
                 {
-                    error ? (
-                        <h2 className="titulo contenedor">{error}</h2>
+                    cargando ? (
+                        <h2 className="titulo contenedor">Cargando...</h2>
                     ) : (
-                        personajes ? (
-                            personajes.map((personaje) => (
-                                <CardPersonaje personaje={personaje} key={personaje.id} />
-                            ))
+                        error ? (
+                            <h2 className="titulo contenedor">{error}</h2>
                         ) : (
-                            <h2 className="titulo contenedor">Cargando...</h2>
+                            personajes && (
+                                personajes.map((personaje) => (
+                                    <CardPersonaje personaje={personaje} key={personaje.id} />
+                                ))
+                            )
                         )
                     )
                 }

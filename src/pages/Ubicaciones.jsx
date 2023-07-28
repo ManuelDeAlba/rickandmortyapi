@@ -11,6 +11,8 @@ function Ubicaciones(){
         pagina,
         paginas,
         urls,
+        cargando,
+        error,
         obtenerElementos:obtenerUbicaciones
     } = useFetch(API_URLS.locations);
 
@@ -30,21 +32,27 @@ function Ubicaciones(){
 
             <div className="cards">
                 {
-                    ubicaciones ? (
-                        ubicaciones.map(({id, name, type, dimension}) => (
-                            <div className="card" key={id}>
-                                <h2 className="card__titulo">{name}</h2>
-
-                                <div className="card__informacion">
-                                    <p><b>Tipo:</b> {type}</p>
-                                    <p><b>Dimension:</b> {dimension}</p>
-                                </div>
-
-                                <Link className="card__mas boton" to={`/ubicaciones/${id}`}>Ver más</Link>
-                            </div>
-                        ))
-                    ) : (
+                    cargando ? (
                         <h2 className="titulo contenedor">Cargando...</h2>
+                    ) : (
+                        error ? (
+                            <h2 className="titulo contenedor">{error}</h2>
+                        ) : (
+                            ubicaciones && (
+                                ubicaciones.map(({id, name, type, dimension}) => (
+                                    <div className="card" key={id}>
+                                        <h2 className="card__titulo">{name}</h2>
+        
+                                        <div className="card__informacion">
+                                            <p><b>Tipo:</b> {type}</p>
+                                            <p><b>Dimension:</b> {dimension}</p>
+                                        </div>
+        
+                                        <Link className="card__mas boton" to={`/ubicaciones/${id}`}>Ver más</Link>
+                                    </div>
+                                ))
+                            )
+                        )
                     )
                 }
             </div>
