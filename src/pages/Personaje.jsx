@@ -1,6 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { obtenerEpisodio, obtenerPersonaje, obtenerUbicacion } from "../fetch";
+import { obtenerEpisodio, obtenerPersonaje } from "../fetch";
+import CardEpisodio from "../components/CardEpisodio";
 
 function Personaje(){
     let { id } = useParams();
@@ -45,13 +46,13 @@ function Personaje(){
 
             <div className="informacion__episodios contenedor">
                 <h2 className="informacion__titulo">Episodios ({personaje.episode.length})</h2>
-                <ul>
+                <div className="cards">
                     {
                         personaje.episode.map(episodio => (
-                            <li key={episodio.id}><Link class="informacion__link" to={`/episodios/${episodio.id}`}>{episodio.episode}</Link> - {episodio.name}</li>
+                            <CardEpisodio episodio={episodio} key={episodio.id} />
                         ))
                     }
-                </ul>
+                </div>
             </div>
         </div>
     )

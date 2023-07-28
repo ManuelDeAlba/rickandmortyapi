@@ -34,8 +34,8 @@ function Episodio(){
             <div className="informacion__textos">
                 <div className="informacion__contenedor contenedor">
                     <h2 className="informacion__titulo">Información</h2>
-                    <p><b>Estreno:</b> {episodio.air_date}</p>
                     <p><b>Episodio:</b> {episodio.episode}</p>
+                    <p><b>Estreno:</b> {episodio.air_date}</p>
                 </div>
             </div>
 
